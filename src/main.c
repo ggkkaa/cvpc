@@ -10,7 +10,7 @@ static void usage() {
 }
 
 int main(int argc, char **argv) {
-        char *output, *target = NULL;
+        char *output = NULL, *target = NULL;
         
         argv0 = progname(argv[0], "cvpc");
 
