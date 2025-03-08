@@ -58,7 +58,7 @@ Make a file with the extension .cvp and compile it. The syntax will be described
 
 TASKS TO DO
 
-- [ ] - Basic compilation that returns 0
+- [ ] - Basic compilation of a program that returns 0
 - [ ] - Printing with puts
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
