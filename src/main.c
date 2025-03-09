@@ -24,12 +24,6 @@ int main(int argc, char **argv) {
                 default:
                         usage();
         } ARGEND
-
-        if (target) {
-                printf("Target: %s\n", target);
-        } else {
-                printf("No target specified\n");
-        }
         
         targinit(target);
 
@@ -38,8 +32,6 @@ int main(int argc, char **argv) {
                 if (!freopen(output, "w", stdout)) {
                         fatal("open %s:", output);
                 }
-        } else {
-                printf("No output specified\n");
         }
 
 
@@ -47,7 +39,6 @@ int main(int argc, char **argv) {
                 fatal("open %s:", output);
 
         if(argc) {
-                printf("scanning args\n");
                 while (argc--) {
                         scanfrom(argv[argc], NULL);
                 }
