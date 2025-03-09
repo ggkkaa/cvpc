@@ -20,6 +20,7 @@ enum tokenkind {
         TRETURN
 };
 
+
 enum typekind {
         TYPENONE,
         
@@ -117,7 +118,6 @@ struct decl {
         
 };
 
-
 struct scope {
         struct map tags;
         struct map decls;
@@ -127,6 +127,16 @@ struct location {
 	const char *file;
 	size_t line, col;
 };
+
+struct token {
+        enum tokenkind kind;
+        bool hide;
+        bool space;
+        struct location loc;
+        char *lit;
+};
+
+extern struct token tok;
 
 void scanfrom(const char *, FILE *);
 

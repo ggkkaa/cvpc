@@ -140,3 +140,5 @@ bool consume(int kind) {
         next();
         return true;
 }
+
+extern struct token tok;

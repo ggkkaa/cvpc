@@ -7,7 +7,8 @@ SRC=\
 	src/utils.c\
 	src/targ.c \
 	src/type.c \
-	src/scope.c
+	src/scope.c \
+	src/token.c
 
 .PHONY: all
 all: $(SRC)
