@@ -49,13 +49,14 @@ int main(int argc, char **argv) {
         if(argc) {
                 printf("scanning args\n");
                 while (argc--) {
-                        printf("Scanning: %s\n", argv[argc]);
                         scanfrom(argv[argc], NULL);
                 }
                 openscan();
         } else {
                 printf("No arguments to scan\n");
         }
+
+        scopeinit();
 
         return 0;
 }

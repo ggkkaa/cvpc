@@ -65,3 +65,80 @@ char *progname(char *name, char *fallback) {
 	slash = strrchr(name, '/');
 	return slash ? slash + 1 : name;
 }
+
+/* Hashes a value with the FNV-1a hash algorithm. */
+static unsigned long hash(const void *ptr, size_t len) {
+        unsigned long h;
+        const unsigned char *pos, *end;
+
+        h = 0x811c9dc5;
+        for(pos = ptr, end = pos + len; pos != end; ++pos)
+                h = (h ^ *pos) * 0x1000193;
+        return h;
+}
+
+void mapkey(struct mapkey *key, const void *string, size_t len) {
+        key->str = string;
+        key->len = len;
+        key->hash = hash(string, len);
+}
+
+void mapinit(struct map *map, size_t cap) {
+        assert(!(cap & cap - 1));
+        map->len = 0;
+        map->cap = cap;
+        map->keys = xreallocarray(NULL, cap, sizeof(map->keys[0]));
+        map->vals = xreallocarray(NULL, cap, sizeof(map->vals[0]));
+
+        for(size_t i = 0; i < cap; ++i)
+                map->keys[i].str = NULL;
+}
+
+static bool keyequal(struct mapkey *key_1, struct mapkey *key_2) {
+        if(key_1->hash != key_2->hash) 
+                return false;
+        return memcmp(key_1->str, key_2->str, key_1->len) == 0;
+}       
+
+static size_t keyindex(struct map *map, struct mapkey *key) {
+        size_t i;
+
+        i = key->hash & map->cap - 1;
+        while (map->keys[i].str && !keyequal(&map->keys[i], key))
+                i = i + 1 & map->cap - 1;
+        return i;
+}
+
+void **mapput(struct map *map, struct mapkey *key) {
+        struct mapkey *old_keys;
+        void **old_vals;
+        size_t old_cap;
+
+        if(map->cap / 2 < map->len) {
+                old_keys = map->keys;
+                old_vals = map->vals;
+                old_cap = map->cap;
+                map->cap *= 2;
+                map->keys = xreallocarray(NULL, map->cap, sizeof(map->keys[0]));
+                map->vals = xreallocarray(NULL, map->cap, sizeof(map->vals[0]));
+                for(size_t i = 0; i < map->cap; ++i)
+                        map->keys[i].str = NULL;
+                for(size_t i = 0; i < old_cap; ++i) {
+                        if(old_keys[i].str) {
+                                size_t j = keyindex(map, &old_keys[i]);
+                                map->keys[j] = old_keys[i];
+                                map->vals[j] = old_vals[i];
+                        }
+                }
+                free(old_keys);
+                free(old_vals);
+        }
+        size_t i = keyindex(map, key);
+        if(!map->keys[i].str) {
+                map->keys[i] = *key;
+                map->vals[i] = NULL;
+                ++map->len;
+        }
+
+        return &map->vals[i];
+}

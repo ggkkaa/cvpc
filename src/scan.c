@@ -54,7 +54,7 @@ static void nextchar(struct scanner *scan) {
         }
 }
 
-void scanfrom(const char * name, FILE *file) {
+void scanfrom(const char *name, FILE *file) {
         printf("Scanning %s\n", name);
         struct scanner *scan;
 

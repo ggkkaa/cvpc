@@ -85,6 +85,44 @@ struct type {
 	} u;
 };
 
+enum declkind {
+        DECLTYPE,
+        DECLOBJECT,
+        DECLBUILTIN
+};
+
+enum builtinkind {
+        BUILTINALLOC,
+        BUILTINISCONSTANT,
+        BUILTINEXPECT,
+        BUILTININFINITE,
+        BUILTINNIL,
+        BUILTINOFFSETOF,
+        BUILTINTYPESCOMPATIBLE,
+        BUILTINUNREACHABLE,
+        BUILTINVAARG,
+        BUILTINVACOPY,
+        BUILTINVAEND,
+        BUILTINVASTART
+};
+
+struct decl {
+        char *name;
+        enum declkind kind;
+        struct type *type;
+
+        union {
+                enum builtinkind builtin;
+        } u;
+        
+};
+
+
+struct scope {
+        struct map tags;
+        struct map decls;
+};
+
 struct location {
 	const char *file;
 	size_t line, col;
@@ -109,3 +147,4 @@ struct target {
         int signedchar;
 };
 
+extern const struct target *targ;
