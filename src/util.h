@@ -16,6 +16,11 @@ void *xmalloc(size_t len);
 
 char *progname(char *name, char *fallback);
 
+struct token_array {
+        struct token *tokens;
+        size_t size;
+        size_t capacity;
+};
 
 bool isDigit(char c);
 bool isAlpha(char c);
