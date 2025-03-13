@@ -87,7 +87,6 @@ void openscan() {
 
 void scanline() {
         if (scanner->chr != EOF) {
-                fprintf(stderr, "%c", scanner->chr);
                 nextchar(scanner);
         } else {
                 tok.kind = TEOF;
