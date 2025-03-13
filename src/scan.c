@@ -36,7 +36,9 @@ static void nextchar(struct scanner *scan) {
                 bufadd(&scan->buf, scan->chr);
         }
         for(;;) {
-                printf("%c", scan->chr);
+                if(scan->chr != "/0" && scan->chr != NULL && scan->chr != 0) {
+                        printf("%c", scan->chr);
+                }
                 scan->chr = getc(scan->file);
                 if(scan->chr == '\n') {
                         ++scan->loc.line, scan->loc.col = 0;
@@ -55,7 +57,7 @@ static void nextchar(struct scanner *scan) {
 }
 
 void scanfrom(const char *name, FILE *file) {
-        
+
         struct scanner *scan;
 
         scan = xmalloc(sizeof(*scan));
@@ -84,9 +86,11 @@ void openscan() {
 }
 
 void scanline() {
-        tok.kind = TEOF;
-        printf("scanline: TODO\n");
-
-        
+        if (scanner->chr != EOF) {
+                fprintf(stderr, "%c", scanner->chr);
+                nextchar(scanner);
+        } else {
+                tok.kind = TEOF;
+        }
 }
 
