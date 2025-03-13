@@ -11,7 +11,8 @@ static void usage() {
 
 int main(int argc, char **argv) {
         char *output = NULL, *target = NULL;
-        
+        bool *fail = false;
+
         argv0 = progname(argv[0], "cvpc");
 
         ARGBEGIN {
@@ -30,7 +31,7 @@ int main(int argc, char **argv) {
         if (output) {
                 printf("Output: %s\n", output);
                 if (!freopen(output, "w", stdout)) {
-                        fatal("open %s:", output);
+			fatal("open %s:", output);
                 }
         }
 
