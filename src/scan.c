@@ -36,9 +36,6 @@ static void nextchar(struct scanner *scan) {
                 bufadd(&scan->buf, scan->chr);
         }
         for(;;) {
-                if(scan->chr != "/0" && scan->chr != NULL && scan->chr != 0) {
-                        printf("%c", scan->chr);
-                }
                 scan->chr = getc(scan->file);
                 if(scan->chr == '\n') {
                         ++scan->loc.line, scan->loc.col = 0;
@@ -87,7 +84,7 @@ void openscan() {
 
 void scanline() {
         if (scanner->chr != EOF) {
-                nextchar(scanner);
+
         } else {
                 tok.kind = TEOF;
         }
