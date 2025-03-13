@@ -142,7 +142,11 @@ void scanfrom(const char *, FILE *);
 
 void targinit(const char *name);
 
-void openscan(void);
+void scopeinit();
+void scopeputdecl(struct scope *scope, struct decl *decl);
+
+void openscan();
+void scanline();
 
 extern struct type typevoid;
 extern struct type typechar;
@@ -158,3 +162,5 @@ struct target {
 };
 
 extern const struct target *targ;
+
+struct type *typeadjust(struct type *type, enum typequal *qual);

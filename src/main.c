@@ -50,6 +50,7 @@ int main(int argc, char **argv) {
         scopeinit();
         while(tok.kind != TEOF) {
                 // TODO: Compile to IL
+                scanline();
         }
 
         return 0;

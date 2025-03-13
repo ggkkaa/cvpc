@@ -29,3 +29,5 @@ struct mapkey {
 };
 
 void **mapput(struct map *map, struct mapkey *key);
+void mapkey(struct mapkey *key, const void *string, size_t len);
+void mapinit(struct map *map, size_t cap);

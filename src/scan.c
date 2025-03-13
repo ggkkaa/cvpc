@@ -82,3 +82,8 @@ void openscan() {
                 nextchar(scanner);
         }
 }
+
+void scanline() {
+        printf("scanline: TODO");
+}
+
