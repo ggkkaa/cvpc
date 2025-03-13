@@ -84,6 +84,7 @@ void openscan() {
 }
 
 void scanline() {
-        printf("scanline: TODO");
+        tok.kind = TEOF;
+        printf("scanline: TODO\n");
 }
 

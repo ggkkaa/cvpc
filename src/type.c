@@ -23,7 +23,7 @@ struct type *mktype(enum typekind kind, enum typeprop prop)
 {
 	struct type *type;
 
-        printf("mktype\n", kind, prop);
+        printf("mktype running\n");
 
 	type = xmalloc(sizeof(*type));
 	type->kind = kind;
