@@ -35,19 +35,12 @@ int main(int argc, char **argv) {
                 }
         }
 
-
-	if (output && !freopen(output, "w", stdout))
-                fatal("open %s:", output);
-
         if(argc) {
                 while (argc--) {
                         scanfrom(argv[argc], NULL);
                 }
                 openscan();
-        } else {
-                printf("No arguments to scan\n");
         }
-
         scopeinit();
         while(tok.kind != TEOF) {
                 // TODO: Compile to IL

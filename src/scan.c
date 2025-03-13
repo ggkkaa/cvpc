@@ -55,7 +55,7 @@ static void nextchar(struct scanner *scan) {
 }
 
 void scanfrom(const char *name, FILE *file) {
-        printf("Scanning %s\n", name);
+        
         struct scanner *scan;
 
         scan = xmalloc(sizeof(*scan));
@@ -86,5 +86,7 @@ void openscan() {
 void scanline() {
         tok.kind = TEOF;
         printf("scanline: TODO\n");
+
+        
 }
 
