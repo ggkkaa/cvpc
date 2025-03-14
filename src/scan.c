@@ -105,9 +105,11 @@ struct token scantoken() {
                 return number();
 }
 
-void scanline() {
+void scanline(struct token_arr* array) {
         if (scanner->chr != EOF) {
-                scantoken();
+                struct token token = scantoken(array);
+                tok.kind = token.kind;
+                token_arr_add(array);
         } else {
                 tok.kind = TEOF;
         }

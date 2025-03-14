@@ -142,7 +142,7 @@ struct token_arr {
 extern struct token tok;
 
 void token_arr_init(struct token_arr *array);
-void token_arr_add(struct token_arr *array);
+void token_arr_add(struct token_arr *array, struct token token);
 void token_arr_free(struct token_arr *array);
 
 void scanfrom(const char *, FILE *);

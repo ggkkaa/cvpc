@@ -6,7 +6,7 @@ void token_arr_init(struct token_arr *array) {
         // TODO: make function that initializes array
 }
 
-void token_arr_add(struct token_arr *array) {
+void token_arr_add(struct token_arr *array, struct token token) {
         // TODO: make function that adds token to array
 }
 
