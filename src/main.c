@@ -49,6 +49,8 @@ int main(int argc, char **argv) {
         
         struct token_arr token_array;
 
+        token_arr_init(&token_array);
+
         while(tok.kind != TEOF) {
                 scanline(token_array);
         }
