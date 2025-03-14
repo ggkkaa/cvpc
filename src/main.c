@@ -46,9 +46,11 @@ int main(int argc, char **argv) {
                 openscan();
         }
         scopeinit();
+        
+        struct token_arr token_array;
+
         while(tok.kind != TEOF) {
-                // TODO: Compile to IL
-                scanline();
+                scanline(token_array);
         }
 
         delete_arenas();
