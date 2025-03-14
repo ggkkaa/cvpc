@@ -109,7 +109,7 @@ void scanline(struct token_arr* array) {
         if (scanner->chr != EOF) {
                 struct token token = scantoken(array);
                 tok.kind = token.kind;
-                token_arr_add(array);
+                token_arr_add(array, token);
         } else {
                 tok.kind = TEOF;
         }
