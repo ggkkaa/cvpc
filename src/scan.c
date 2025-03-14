@@ -37,6 +37,7 @@ static void nextchar(struct scanner *scan) {
         }
         for(;;) {
                 scan->chr = getc(scan->file);
+                printf("%c", scan->chr);
                 if(scan->chr == '\n') {
                         ++scan->loc.line, scan->loc.col = 0;
                         break;
@@ -82,9 +83,31 @@ void openscan() {
         }
 }
 
+struct token identifier() {
+        struct token token = { 0 };
+        return token;
+}
+
+struct token number() {
+        struct token token = { 0 };
+        return token;
+}
+
+
+struct token scantoken() {
+        nextchar(scanner);
+        char c = scanner->chr;
+
+        if (isAlpha(c)) 
+                return identifier();
+        
+        if(isDigit(c))
+                return number();
+}
+
 void scanline() {
         if (scanner->chr != EOF) {
-
+                scantoken();
         } else {
                 tok.kind = TEOF;
         }
