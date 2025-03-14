@@ -1,9 +1,13 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#define ARENA_IMPLEMENTATION
+#include "3rdparty/arena.h"
 #include "util.h"
 #include "args.h"
 #include "cc.h"
+
+Arena arena;
 
 static void usage() {
         fprintf(stderr, "usage: %s [input]\n", argv0);
@@ -47,5 +51,6 @@ int main(int argc, char **argv) {
                 scanline();
         }
 
+        delete_arenas();
         return 0;
 }
