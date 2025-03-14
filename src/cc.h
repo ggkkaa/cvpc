@@ -130,13 +130,18 @@ struct location {
 
 struct token {
         enum tokenkind kind;
-        bool hide;
-        bool space;
         struct location loc;
-        char *lit;
+};
+
+struct token_arr {
+        struct token *tokens;
+        size_t size;
+        size_t capacity;
 };
 
 extern struct token tok;
+
+void token_arr_init(struct token_arr)
 
 void scanfrom(const char *, FILE *);
 
