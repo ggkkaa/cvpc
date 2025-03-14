@@ -16,11 +16,21 @@ void *xmalloc(size_t len);
 
 char *progname(char *name, char *fallback);
 
-struct token_array {
-        struct token *tokens;
-        size_t size;
-        size_t capacity;
+struct map {
+        size_t len, cap;
+        struct mapkey *keys;
+        void **vals;
 };
+
+struct mapkey {
+        unsigned long hash;
+        const void *str;
+        size_t len;
+};
+
+void **mapput(struct map *map, struct mapkey *key);
+void mapkey(struct mapkey *key, const void *string, size_t len);
+void mapinit(struct map *map, size_t cap);
 
 bool isDigit(char c);
 bool isAlpha(char c);
