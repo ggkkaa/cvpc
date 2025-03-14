@@ -142,3 +142,13 @@ void **mapput(struct map *map, struct mapkey *key) {
 
         return &map->vals[i];
 }
+
+bool isDigit(char c) {
+        return c >= '0' && c <= '9';
+}
+
+bool isAlpha(char c) {
+        return (c >= 'a' && c <= 'z') ||
+               (c >= 'A' && c <= 'Z') ||
+               c == '_';
+}
