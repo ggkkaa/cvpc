@@ -54,5 +54,7 @@ dkms.conf
 # Text Editor Files
 .vscode/
 
-# Build File
+# Build Files
+CMakeFiles/
+Makefile
 build/
